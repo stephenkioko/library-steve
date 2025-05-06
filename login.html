@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="index.css">
+    <script>
+        // Function to validate login form
+        function validateLoginForm(event) {
+            // Prevent form submission if validation fails
+            event.preventDefault();
+    
+            // Get values from the input fields
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // Username validation (ensure it's not empty)
+            if (username.trim() === "") {
+                alert("Username is required");
+                return false;
+            }
+
+            // Password validation (ensure it's not empty and meets minimum length)
+            if (password.trim() === "") {
+                alert("Password is required");
+                return false;
+            }
+
+            if (password.length < 6) {
+                alert("Password must be at least 6 characters long");
+                return false;
+            }
+
+            // If all validations pass, allow form submission
+            alert("Login successful!");
+            // Normally here you would submit the form to the PHP script
+            document.getElementById("loginForm").submit(); // Submit the form to the PHP script
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <h1>A Library System</h1>
+    <div class="header">
+        <a href="index.html">HOME</a>
+        <a href="register.html">REGISTER</a>
+        <a href="login.html">LOGIN</a>
+    </div>
+    <div class="container">
+        <div class="login-container">
+            <!-- Updated the form to submit to login.php -->
+            <form id="loginForm" action="login.php" method="POST" onsubmit="return validateLoginForm(event)">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required><br><br>
+
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required><br><br>
+
+                <button type="submit">Login</button>
+            </form>
+            <p>Don't have an account? <a href="register.html">Sign Up</a></p>
+        </div>
+    </div>
+</body>
+</html>
